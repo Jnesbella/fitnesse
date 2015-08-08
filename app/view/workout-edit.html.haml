@@ -1,0 +1,57 @@
+.edit-view.container-fluid.workout-edit(ng-class="mode")
+	%add-exercise-modal(callback="doAddExercises(value)" open="addExercicesModalOpen")
+	.row.title-bar
+		.col-xs-3.title-bar-item
+			%button(type="button" ng-click="cancel()")
+				%span(ng-if="mode === 'create' || mode === 'update'") cancel
+				%span(ng-if="mode === 'read'") back
+		.col-xs-6.title-bar-header
+			%span(ng-if="mode === 'create'") new workout
+			%span(ng-if="mode === 'read' || mode === 'update'") {{getWorkout().name}}
+		.col-xs-3.title-bar-item
+			%button(type="button" ng-click="save()" ng-disabled="!(isValid() && isDirty())" ng-if="mode === 'create' || mode === 'update'") save
+			%button(type="button" ng-click="edit()" ng-if="mode === 'read'") edit
+	.edit-container
+		.edit-section.extra-button(ng-if="mode === 'read'")
+			%button(ng-click="doWorkout()") start this workout
+		.edit-section
+			.sub-header
+				%span name
+			.edit-section-content
+				%input(type="input" ng-if="mode === 'create' || mode === 'update'" ng-model="data.name" placeholder="name your workout")
+				%span(ng-if="mode === 'read'") {{getWorkout().name}}
+		.edit-section
+			.sub-header
+				%span(ng-if="mode === 'read' && !getWorkout().exercises.length") no
+				%span
+					exercises
+					%span(ng-if="mode === 'read'") ({{getWorkout() ? getWorkout().exercises.length : 0}})
+			.edit-section-content.list-view
+				%ul(ng-if="(getWorkout() && getWorkout().id && getWorkout().exercises.length && mode === 'read') || (mode === 'create') || mode === 'update'")
+					%li.add-item(ng-if="mode === 'create' || mode === 'update'")
+						%button(ng-click="addExercises()") add exercises
+					%li.no-items(ng-if="mode === 'create' || mode === 'update'" ng-if="!data.exercises.length")
+						%span no exercises
+					%li.faux-table(ng-repeat="exercise in data.exercises track by $index" draggable="true")
+						.faux-cell
+							%a {{getExercise(exercise).name}}
+						.faux-cell.edit-column
+							%button.move(type="button" ng-click="move($index)" ng-if="mode === 'create' || mode === 'update'")
+								%span(ng-if="moveIndex === undefined || moveIndex === $index") move
+								%span(ng-if="moveIndex !== undefined && moveIndex !== $index") here
+						.faux-cell.edit-column
+							%button.slay(type="button" ng-click="slay($index)" ng-if="mode === 'create' || mode === 'update'") delete
+		.edit-section(ng-if="mode === 'read'")
+			.sub-header
+				%span(ng-if="mode === 'read' && !getEquipment().length") no
+				%span equipment
+			.edit-section-content
+				%span.list-item(ng-if="mode === 'read'" ng-repeat="equipment in getEquipment()")
+					{{getEquipmentData(equipment).name}}
+		.edit-section(ng-if="mode === 'read'")
+			.sub-header
+				%span(ng-if="mode === 'read' && !getMuscleGroups().length") no
+				%span muscle groups
+			.edit-section-content
+				%span.list-item(ng-if="mode === 'read'" ng-repeat="muscleGroup in getMuscleGroups()")
+					{{getMuscleGroupData(muscleGroup).name}}

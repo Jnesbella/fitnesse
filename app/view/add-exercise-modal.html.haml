@@ -1,0 +1,26 @@
+.fitnesse-modal.add-exercise.flex-container(ng-style="{ 'display': open ? 'flex' : 'none' }")
+	.modal-instructions.no-flex
+		.title-bar
+			.row
+				.col-xs-3.title-bar-item
+					%button(type="button" ng-click="cancel()") cancel
+				.col-xs-6.title-bar-header
+					Exercises
+				.col-xs-3.title-bar-item
+					%button(type="button" ng-click="add()") add
+		.search-bar
+			%input(type="search" placeholder="search" ng-model="search")
+	.fitnesse-modal-content
+		%ul
+			%li(ng-repeat="exercise in getExercises()" ng-click="toggleSelection(exercise)")
+				.faux-table
+					.faux-cell
+						.item-bullet(ng-class="{ 'item-bullet-selected': isSelected(exercise) }")
+					.faux-cell.name-cell
+						{{exercise.name}}
+
+	/
+		.modal-save.no-flex
+			%button.modal-item(type="button" ng-click="add()") add
+		.modal-cancel.no-flex
+			%button.modal-item(type="button" ng-click="cancel()") cancel

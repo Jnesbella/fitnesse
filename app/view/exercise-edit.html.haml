@@ -1,0 +1,35 @@
+.edit-view.container-fluid
+	.row.title-bar
+		.col-xs-3.title-bar-item
+			%button(type="button" ng-click="cancel()")
+				%span(ng-if="mode === 'create' || mode === 'update'") cancel
+				%span(ng-if="mode === 'read'") back
+		.col-xs-6.title-bar-header
+			%span(ng-if="mode === 'create'") new exercise
+			%span(ng-if="mode === 'read' || mode === 'update'") {{getExercise().name}}
+		.col-xs-3.title-bar-item
+			%button(type="button" ng-click="save()" ng-disabled="!(isValid() && isDirty())" ng-if="mode === 'create' || mode === 'update'") save
+			%button(type="button" ng-click="edit()" ng-if="mode === 'read'") edit
+	.edit-container
+		.edit-section
+			.sub-header
+				%span name
+			.edit-section-content
+				%input(type="input" ng-if="mode === 'create' || mode === 'update'" ng-model="data.name" placeholder="name your exercise")
+				%span(ng-if="mode === 'read'") {{getExercise().name}}
+		.edit-section
+			.sub-header
+				%span(ng-if="mode === 'read' && !getExercise().muscleGroups.length") no
+				%span muscle groups
+			.edit-section-content
+				%select(multiple ng-options="muscleGroup.id as muscleGroup.name for (id , muscleGroup) in getMuscleGroups()" ng-model="data.muscleGroups" ng-if="mode === 'create' || mode === 'update'")
+				%span.list-item(ng-if="mode === 'read'" ng-repeat="muscleGroup in getExercise().muscleGroups")
+					{{getMuscleGroup(muscleGroup).name}}
+		.edit-section
+			.sub-header
+				%span(ng-if="mode === 'read' && !getExercise().equipment.length") no
+				%span equipment
+			.edit-section-content
+				%select(multiple ng-options="equipment.id as equipment.name for (id , equipment) in getEquipment()" ng-model="data.equipment" ng-if="mode === 'create' || mode === 'update'")
+				%span.list-item(ng-if="mode === 'read'" ng-repeat="equipment in getExercise().equipment")
+					{{getEquipment(equipment).name}}

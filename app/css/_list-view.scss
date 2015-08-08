@@ -1,0 +1,25 @@
+.list-view {
+
+	.add-item {
+		text-align: center;
+	}
+
+	.no-items {
+		//color: $color-accent;
+		text-align: center;
+	}
+
+	li {
+		clear: both;
+	}
+
+	button.slay {
+	  float: right;
+	}
+
+	.edit-column {
+		text-align: right;
+		width: 1%;
+		padding-left: 1em;
+	}
+}

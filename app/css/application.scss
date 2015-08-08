@@ -1,0 +1,180 @@
+/* 
+  Stylesheets for LightBox <http://getlightbox.com> 
+  Author: Matt Haller <matt@lightsidelabs.com>
+  ©2014 LightSide Labs, LLC (unless otherwise/rights reserved) <http://lightsidelabs.com>
+*//* 
+  Font Vars
+
+  As per TypeKit
+  http://help.typekit.com/customer/portal/articles/6855-Using-multiple-weights-and-styles
+  these vars should be chained specific->generic in 'font-family' declarations to guarantee
+  proper rendering in IE6-8.  This is necessary when kits contain more than 4 font
+  styles (ours do).  I include font-weight and font-style declarations in addition to this,
+  in case TypeKit vaporizes someday.
+
+  e.g.
+  font-family: $fontSansBoldItalic, $fontSans, sans-serif;
+  font-weight: 700;
+  font-style: italic;
+*/
+
+/* Color Vars */
+
+/* Top-level Imports */
+@import "bootstrap"; /* Twitter Bootstrap's CSS -> SASS */
+@import "vars";
+
+$lightGrey: rgba(0, 0, 0, 0.3);
+$darkGrey: rgba(0, 0, 0, 0.6);
+$blue: rgba(0, 0, 255, 0.1);
+
+html, body {
+  height:100%;
+  margin:0;
+} 
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  font-size: 12pt;
+  text-transform: lowercase;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+body.flex-container {
+  flex-direction: column;
+}
+
+h1 {
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size: 16pt;
+  padding: 0;
+  margin: 0;
+}
+
+.content {
+  flex: 1;
+  height: 100%;
+}
+
+.title-bar {
+  text-align: center;
+  background-color: $color-primary;
+  padding: 1em 0;
+  color: $color-secondary;
+
+  .title-bar-item {
+
+  }
+
+  .title-bar-header {
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 16pt;
+  }
+}
+
+a {
+  color: $color-primary;
+  cursor: pointer;
+  //padding: 0.5em;
+  text-decoration: underline;
+
+  &:hover {
+    //color: $color-primary;
+    //background-color: $color-accent;
+  }
+}
+
+button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.5em 1em;
+  margin: 0;
+  border: 1px solid $color-primary;
+  color: black;
+  background-color: $color-secondary;
+  min-width: 5em;
+  text-align: center;
+
+  &.slay {
+    color: red;
+    border-color: red;
+  }
+
+  &:hover {
+    //background-color: rgba(0, 0, 0, 0.1);
+    text-decoration: underline;
+  }
+
+  &:disabled {
+    text-decoration: line-through;
+    //background-color: $color-secondary;
+    //color: $color-accent;
+    cursor: not-allowed;
+  }
+
+  &:disabled:hover {
+    //background-color: transparent;
+  }
+
+  &:active {
+    background-color: $color-accent-light;
+  }
+
+  &.secondary {
+    border: none;
+    background-color: $color-primary;
+    color: white;
+
+    &:active {
+      background-color: $color-accent;
+    }
+  }
+}
+
+*:focus {
+  outline: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    padding: 1em 0;
+    border-bottom: 1px solid $color-accent;
+  }
+
+  li:last-child {
+    border: none;
+  }
+}
+
+.faux-table {
+  display: table;
+  width: 100%;
+
+  .faux-row {
+    display: table-row;
+  }
+
+  .faux-cell {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+/* fitnesse views */
+@import "workout-player";
+@import "edit-view";
+@import "list-view";
+@import "home";
+@import "fitnesse-modal";

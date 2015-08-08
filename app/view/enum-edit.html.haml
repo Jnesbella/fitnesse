@@ -1,0 +1,20 @@
+.edit-view.container-fluid
+	.row.title-bar
+		.col-xs-3.title-bar-item
+			%button(type="button" ng-click="cancel()")
+				%span(ng-if="mode === 'create' || mode === 'update'") cancel
+				%span(ng-if="mode === 'read'") back
+		.col-xs-6.title-bar-header
+			%span(ng-if="mode === 'create'") new {{getName()}}
+			%span(ng-if="mode === 'read' || mode === 'update'") {{getItem().name}}
+		.col-xs-3.title-bar-item
+			%button(type="button" ng-click="save()" ng-disabled="!(isValid() && isDirty())" ng-if="mode === 'create' || mode === 'update'") save
+			%button(type="button" ng-click="edit()" ng-if="mode === 'read'") edit
+	
+	.edit-container
+		.edit-section
+			.sub-header
+				%span name
+			.edit-section-content
+				%input(type="input" ng-model="data.name" ng-if="mode === 'create' || mode === 'update'" placeholder="name goes here")
+				%span(ng-if="mode === 'read'") {{getItem().name}}

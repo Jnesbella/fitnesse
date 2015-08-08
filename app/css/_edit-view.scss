@@ -1,0 +1,93 @@
+.edit-view {
+	
+	input, select {
+		width: 100%;
+		border: none;
+		border-left: 1px solid $color-accent;
+		padding-left: 0.5em;
+	}
+
+	option {
+		padding: 0.5em 1em;
+	}
+
+	.edit-section {
+		border-bottom: 1px solid;
+		padding-bottom: 1em;
+	}
+
+	.sub-header {
+		color: white;
+		color: $color-tertiary;
+		text-transform: capitalize !important;
+		margin-top: 1em;
+		//border-bottom: 1px solid $color-tertiary;
+	}
+
+	.list-item {
+		//font-weight: bold;
+		//display: block;
+	}
+
+	.list-item:after {
+		content: '•';
+		color: $lightGrey;
+		padding: 0 0.5em;
+		/*background-color: rgba(0, 0, 0, 0.2);
+		display: inline-block;
+		width: 0.5em;
+		height: 0.5em;
+		border-radius: 1em;
+		content: '';
+		margin: 0 0.5em;*/
+		/*content: '-';
+		padding: 0 0.5em;*/
+		/*content: ',';
+		padding-right: 0.5em;
+		color: rgba(0, 0, 0, 0.6);*/
+	}
+
+	.list-item:last-child:after {
+		//content: '';
+		display: none;
+	}
+
+	.edit-column {
+	  text-align: right;
+	}
+
+	.no-items {
+	  color: $lightGrey;
+	  text-align: center;
+	}
+
+	.add-item {
+		text-align: right;
+	}
+
+	.extra-button {
+		padding-top: 1em;
+		text-align: center;
+	}
+
+	&.workout-edit {
+
+		.edit-section {
+
+			ul {
+
+				.add-item {
+					padding-top: 0;
+				}
+
+				/*li:first-of-type {
+					padding-top: 0;
+				}*/
+
+				li:last-of-type {
+					padding-bottom: 0;
+				}
+			}
+		}
+	}
+}

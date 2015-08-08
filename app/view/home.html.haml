@@ -1,0 +1,19 @@
+.home.container-fluid
+	.row.title-bar
+		.col-xs-3.title-bar-item
+			%button(type="button") about
+		.col-xs-6.title-bar-header
+			Fitnesse
+		.col-xs-3.title-bar-item
+			%button(type="button") settings
+	.row
+		.col-xs-12
+			%ul
+				%li
+					%a(ng-click="navigate('equipment')") equipment
+				%li
+					%a(ng-click="navigate('muscle_groups')") muscle groups
+				%li
+					%a(ng-click="navigate('exercises')") exercises
+				%li
+					%a(ng-click="navigate('workouts')") workouts

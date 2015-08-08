@@ -1,0 +1,39 @@
+.recorder
+	/
+		.preview(ng-hide="true")
+			%session-divider(label="{{ data.timestamp | date : 'EEEE, d MMMM y' }}")
+			.measure-duration-preview
+				{{data.measure}} {{measureLabel.display}} for {{data.duration}} {{durationLabel.display}}
+			.note-preview
+				{{note}}
+				.no-note(ng-if="!note")
+					No note to log.
+	.log-content.info(xng-if="selectedTab === 'log'")
+		.measure
+			%input(type="number" title="measure" placeholder="" ng-model="data.log.measure.value")
+			%label
+				{{measureOptions[data.log.measure.unit].display}}
+		.duration
+			%input(type="number" title="duration" placeholder="" ng-model="data.log.duration.value")
+			%label
+				{{durationOptions[data.log.duration.unit].display}}
+	.note-content.note(xng-if="selectedTab === 'note'")
+		%label note
+		%input(type="text" ng-model="data.log.note")
+	.date-content.date(xng-if="selectedTab === 'date'")
+		.day
+			%label day
+			%input(placeholder="dd" ng-model="data.date.day" ng-blur="setDate()")
+		.month
+			%label month
+			%input(placeholder="mm" ng-model="data.date.month" ng-blur="setDate()")
+		.year
+			%label year
+			%input(placeholder="yyyy" ng-model="data.date.year" ng-blur="setDate()")
+	/
+		.tabs(ng-hide="true")
+			.tab(ng-repeat="tab in tabs" ng-class="tab === selectedTab ? 'selected' : ''" ng-click="selectTab(tab)") {{tab}}
+			%button.secondary.tab(ng-click="doCallback()") log
+	.buttons
+		%button.secondary.log(ng-click="doCallback()")
+			log

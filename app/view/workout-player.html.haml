@@ -1,0 +1,27 @@
+.workout-player
+	.workout-overview.player-screen(ng-hide="data.isRecording")
+		.workout-heading
+			%button End Workout
+			%h1
+				{{ getWorkoutName() }}
+			/
+				.elapsed-time
+					hh:mm:ss
+		%ul.exercises
+			%li(ng-repeat="exercise in getExercises()" ng-click="selectExercise($index)")
+				.decoration
+				{{ exercise.name }}
+	.exercise-recorder.player-screen(ng-if="data.exerciseIndex !== undefined" ng-show="data.isRecording")
+		.exercise-header
+			%button(type="button" ng-click="setRecording(false)") overview
+			%h1
+				{{ getExerciseName() }}
+		.tabs
+			.tab(ng-repeat="tab in tabs" ng-class="{'selected': tab === data.selectedTab}" ng-click="selectTab(tab)") {{ tab }}
+		.records(xng-show="tab === 'records'")
+			.sessions(ng-repeat="session in getSessions()")
+				%session-divider(label="tomorrow")
+				%fitnesse-record(ng-repeat="record in session.records")
+		%fitnesse-recorder(callback="record(data)")
+		
+		
