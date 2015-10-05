@@ -3,8 +3,6 @@ include "../bower_components/angular/angular.min.js"
 include "../bower_components/angular-route/angular-route.min.js"
 include "../bower_components/angular-sanitize/angular-sanitize.min.js"
 include "../bower_components/angular-cookies/angular-cookies.min.js"
-include "../bower_components/angular-bootstrap/ui-bootstrap.min.js"
-include "../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"
 include "../bower_components/angular-touch/angular-touch.min.js"
 
 // fitnesse business logic
@@ -15,7 +13,6 @@ var app = angular.module("Fitnesse.App", [
   'ngRoute',
   'ngSanitize',
   'ngCookies',
-  'ui.bootstrap',
   'ngTouch'
 ]);
 

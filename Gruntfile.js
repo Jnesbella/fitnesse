@@ -113,8 +113,7 @@
      */
     sass: {
       options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
-        loadPath: ['bower_components/bootstrap-sass/lib']
+
       },
       development: {
         options: {
@@ -230,7 +229,7 @@
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-includes');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-haml');
+  grunt.loadNpmTasks('grunt-haml2html');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
@@ -238,7 +237,6 @@
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-karma');
 
   // Replace reference to static files with versioned versions...
   grunt.registerTask('version-assets', 'version the static assets just created', function () {
@@ -267,18 +265,6 @@
   grunt.registerTask('run', 'run watch and a web server', function () {
     grunt.task.run('connect', 'watch');
   });
-
-  // Testing task
-  grunt.registerTask('test', [
-      'jshint',
-      'includes',
-      'uglify:development',
-      'haml',
-      'sass:development',
-      'copy',
-      'clean',
-      'karma'
-  ]);
 
   // Dev task.
   grunt.registerTask('dev', [

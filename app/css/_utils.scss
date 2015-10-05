@@ -1,0 +1,25 @@
+@mixin flex-container ($direction: row) {
+	display: flex;
+	flex-direction: $direction;
+
+	display: -webkit-flex;
+    -webkit-flex-direction: $direction;
+
+    //flex-wrap: nowrap;
+}
+
+@mixin inline-flex-container ($direction: row) {
+	display: inline-flex;
+	flex-direction: $direction;
+
+	display: -webkit-inline-flex;
+    -webkit-flex-direction: $direction;
+
+    //flex-wrap: nowrap;
+}
+
+@mixin flex-item ($grow: 1, $shrink: 1, $basis: 0%) {// auto
+	flex: $grow $shrink $basis;
+
+	-webkit-flex: $grow $shrink $basis;
+}

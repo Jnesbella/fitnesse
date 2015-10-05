@@ -1,13 +1,13 @@
-.edit-view.container-fluid
-	.row.title-bar
-		.col-xs-3.title-bar-item
+.edit-view.screen
+	.title-bar
+		.title-bar-item
 			%button(type="button" ng-click="cancel()")
 				%span(ng-if="mode === 'create' || mode === 'update'") cancel
 				%span(ng-if="mode === 'read'") back
-		.col-xs-6.title-bar-header
+		.title-bar-header
 			%span(ng-if="mode === 'create'") new exercise
 			%span(ng-if="mode === 'read' || mode === 'update'") {{getExercise().name}}
-		.col-xs-3.title-bar-item
+		.title-bar-item
 			%button(type="button" ng-click="save()" ng-disabled="!(isValid() && isDirty())" ng-if="mode === 'create' || mode === 'update'") save
 			%button(type="button" ng-click="edit()" ng-if="mode === 'read'") edit
 	.edit-container

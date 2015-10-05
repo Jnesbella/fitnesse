@@ -9,9 +9,9 @@
 		text-align: center;
 	}
 
-	li {
-		clear: both;
-	}
+	li.flex-container {
+  		align-items: center;
+  	}
 
 	button.slay {
 	  float: right;
@@ -20,6 +20,18 @@
 	.edit-column {
 		text-align: right;
 		width: 1%;
-		padding-left: 1em;
+		//padding-left: 1em;
+	}
+
+	.flex-container {
+	  @include flex-container();
+
+	  .flex-item {
+	    @include flex-item();
+	  }
+	}
+
+	li.flex-container {
+		align-items: center;
 	}
 }

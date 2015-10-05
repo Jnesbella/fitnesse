@@ -31,43 +31,43 @@ app.service('dataManager', ['$cookies', 'localStorage', function ($cookies, loca
 
 	var self = this;
 
-	var templates = {
+	var templates = new (function () {
 
-		duration: {
+		this.duration = {
 			type: '', // seconds | reps
 			value: 0
-		},
+		};
 
-		measure: {
+		this.measure = {
 			colors: [], // colors from the list
 			weight: {
 				unit: '', // lbs | kgs
 				value: 0
 			}
-		},
+		};
 
-		equipment: {
+		this.equipment = {
 			id: '',
 			name: '',
 			value: '',
 			measure: '' // if applicable
-		},
+		};
 
-		muscleGroup: {
+		this.muscleGroup = {
 			id: '',
 			name: '',
 			value: ''
-		},
+		};
 
-		exercise: {
+		this.exercise = {
 			id: '',
 			name: '',
 			description: '',
 			muscleGroups: [], // list of IDs
 			equipment: [] // list of IDs
-		},
+		};
 
-		workout: {
+		this.workout = {
 			id: '',
 			name: '',
 			description: '',
@@ -75,26 +75,50 @@ app.service('dataManager', ['$cookies', 'localStorage', function ($cookies, loca
 			// have helper method to return all targeted muscle groups
 			// have helper method to return all required equipment
 			// stats for average completion time
-		},
+		};
 
-		session: {
+		this.action = { // interface | actions that can occur during a session
 			id: '',
-			timestamp: '', // when the session was started
-			workout: '', // the id for the workout this session references
-			records: [] // a list of IDs that point to records associated with this
-			// have a helper method to get records for exercise
-			// helper method to get ellapsed time. difference between session start and last record
-		},
+			type: '',
+			timestamp: '', // immutable
+			session: '' // the id of the session this action is associate with
+		};
 
-		record: { // noun
+		this.startAction = angular.extend({}, this.action, {
+			type: 'START'
+		});
+
+		this.endAction = angular.extend({}, this.action, {
+			type: 'END'
+		});
+
+		this.logAction = angular.extend({}, this.action, {
+			type: 'LOG',
+			record: '' // the id of the record associated with this aciton
+		});
+
+		this.timerAction = angular.extend({}, this.action, {
+			type: 'TIMER',
+			seconds: 0 // amount of time in seconds the timer ran for
+		});
+
+		this.session = {
+			id: '',
+			workout: '', // the id for the workout this session references
+			actions: []
+			// have a helper method to get records for exercise
+			// helper method to get ellapsed time
+			// method to get the start of the session
+			// method to get the end of the session
+		};
+
+		this.record = { // noun
 			id: '',
 			exercise: '', // id of the exercise this record is for
-			timestamp: '', // when the record was recorded
 			measure: '', // a measure object
-			duration: '', // a duration object
-			session: '' // ??? | optional | id of the session this record is associated with
-		}
-	};
+			duration: '' // a duration object
+		};
+	})();
 
 	var data = {
 

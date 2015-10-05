@@ -1,14 +1,15 @@
-.edit-view.container-fluid.workout-edit(ng-class="mode")
-	%add-exercise-modal(callback="doAddExercises(value)" open="addExercicesModalOpen")
-	.row.title-bar
-		.col-xs-3.title-bar-item
+.edit-view.workout-edit.screen(ng-class="mode")
+	/
+		%add-exercise-modal(callback="doAddExercises(value)" open="addExercicesModalOpen")
+	.title-bar
+		.title-bar-item
 			%button(type="button" ng-click="cancel()")
 				%span(ng-if="mode === 'create' || mode === 'update'") cancel
 				%span(ng-if="mode === 'read'") back
-		.col-xs-6.title-bar-header
+		.title-bar-header
 			%span(ng-if="mode === 'create'") new workout
 			%span(ng-if="mode === 'read' || mode === 'update'") {{getWorkout().name}}
-		.col-xs-3.title-bar-item
+		.title-bar-item
 			%button(type="button" ng-click="save()" ng-disabled="!(isValid() && isDirty())" ng-if="mode === 'create' || mode === 'update'") save
 			%button(type="button" ng-click="edit()" ng-if="mode === 'read'") edit
 	.edit-container
@@ -32,14 +33,13 @@
 						%button(ng-click="addExercises()") add exercises
 					%li.no-items(ng-if="mode === 'create' || mode === 'update'" ng-if="!data.exercises.length")
 						%span no exercises
-					%li.faux-table(ng-repeat="exercise in data.exercises track by $index" draggable="true")
-						.faux-cell
+					%li.flex-container(ng-repeat="exercise in data.exercises track by $index" draggable="true")
+						.flex-item
 							%a {{getExercise(exercise).name}}
-						.faux-cell.edit-column
+						.flex-item.edit-column
 							%button.move(type="button" ng-click="move($index)" ng-if="mode === 'create' || mode === 'update'")
 								%span(ng-if="moveIndex === undefined || moveIndex === $index") move
 								%span(ng-if="moveIndex !== undefined && moveIndex !== $index") here
-						.faux-cell.edit-column
 							%button.slay(type="button" ng-click="slay($index)" ng-if="mode === 'create' || mode === 'update'") delete
 		.edit-section(ng-if="mode === 'read'")
 			.sub-header

@@ -1,22 +1,20 @@
-.list-view.container-fluid
-	.row.title-bar
-		.col-xs-3.title-bar-item
+.list-view.screen
+	.title-bar
+		.title-bar-item
 			%button(type="button" ng-click="back()") back
-		.col-xs-6.title-bar-header
+		.title-bar-header
 			{{getName()}}
-		.col-xs-3.title-bar-item
+		.title-bar-item
 			%button(type="button" ng-click="editDone()")
 				%span(ng-if="mode === 'read'") edit
 				%span(ng-if="mode === 'edit'") done
-	.row
-		.col-xs-12
-			%ul
-				%li.add-item(ng-if="mode === 'edit'")
-					%button(ng-click="create()") add new {{getName()}}
-				%li.no-items(ng-if="!getItemsLength()")
-					%span no {{getName()}}
-				%li.faux-table(ng-repeat="(id, item) in getItems()")
-					.faux-cell
-						%a(ng-click="read(item.id)") {{item.name}}
-					.faux-cell.edit-column
-						%button.slay(type="button" ng-click="slay(item)" ng-if="mode === 'edit'") delete
+	%ul
+		%li.add-item(ng-if="mode === 'edit'")
+			%button(ng-click="create()") add new {{getName()}}
+		%li.no-items(ng-if="!getItemsLength()")
+			%span no {{getName()}}
+		%li.flex-container(ng-repeat="(id, item) in getItems()")
+			.flex-item
+				%a(ng-click="read(item.id)") {{item.name}}
+			.flex-item.edit-column
+				%button.slay(type="button" ng-click="slay(item)" ng-if="mode === 'edit'") delete

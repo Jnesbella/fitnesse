@@ -4,6 +4,7 @@ app.controller('fitnesseRecorderController', ['$scope', '$timeout', function($sc
 
 	$scope.data = {
 		log: {
+			exercise: '',
 			measure: {
 				unit: '',
 				value: 0
@@ -20,6 +21,11 @@ app.controller('fitnesseRecorderController', ['$scope', '$timeout', function($sc
 			month: '',
 			year: ''
 		}
+	};
+
+	$scope.fullUI = true;
+	$scope.toggleUI = function () {
+		$scope.fullUI = !$scope.fullUI;
 	};
 
 	$scope.measureOptions = {
@@ -44,34 +50,13 @@ app.controller('fitnesseRecorderController', ['$scope', '$timeout', function($sc
 		}
 	};
 
-	/*$scope.tabs = ['log', 'note', 'date'];
-	$scope.selectedTab;// = $scope.tabs[0];
-
-	$scope.selectTab = function (tab) {
-		$scope.selectedTab = tab;
-	};*/
-
 	var getLog = function () {
-		/*var data = {};
-		data.measure = {
-			unit: $scope.weightLabel.value,
-			value: $scope.data.measure
-		};
-
-		data.duration = {
-			unit: $scope.durationLabel.value,
-			value: $scope.data.duration
-		};
-
-		data.timestamp = $scope.data.timestamp;// = Date.now();
-
-		return data;*/
-
 		return $scope.data.log;
 	};
 
 	var setLog = function (log) {
 		if (angular.isDefined(log) &&
+			angular.isDefined(log.exercise) &&
 			angular.isDefined(log.measure) &&
 			angular.isDefined(log.duration) &&
 			angular.isDefined(log.note) &&
@@ -90,8 +75,7 @@ app.controller('fitnesseRecorderController', ['$scope', '$timeout', function($sc
 	var isValidDate = function () {
 		// yyyy-mm-dd
 		var dateString = $scope.data.date.year + '-' + $scope.data.date.month + '-' + $scope.data.date.day;
-
-		//return angular.isDate(Date.parse(dateString));
+		
 		var date = Date.parse(dateString)
 		return isFinite(date) ? date : undefined;
 	};
@@ -121,12 +105,10 @@ app.controller('fitnesseRecorderController', ['$scope', '$timeout', function($sc
 	var init = function() {
 		$scope.data.log.measure.unit = $scope.measureOptions.lbs.value;
 		$scope.data.log.duration.unit = $scope.durationOptions.reps.value;
-		//$scope.measureLabel = $scope.measureOptions.lbs;
-		//$scope.durationLabel = $scope.durationOptions.reps;
-
-		//$scope.selectTab($scope.tabs[0]);
 
 		$scope.setDate($scope.data.log.timestamp);
+
+		$scope.data.log.exercise = $scope.exercises[0].id;
 
 		$scope.$watch('log', function (newValue, oldValue) {
 			setLog(newValue);
@@ -144,7 +126,8 @@ app.directive('fitnesseRecorder', [function() {
 			callback: '&',
 			log: '=',
 			durationUnit: '=',
-			measureUnit: '='
+			measureUnit: '=',
+			exercises: '='
 		},
 		controller: 'fitnesseRecorderController',
 		templateUrl: 'view/fitnesse-recorder.html'

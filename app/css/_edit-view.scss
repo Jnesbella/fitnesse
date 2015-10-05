@@ -4,6 +4,9 @@
 		width: 100%;
 		border: none;
 		border-left: 1px solid $color-accent;
+	}
+
+	input {
 		padding-left: 0.5em;
 	}
 
@@ -13,14 +16,15 @@
 
 	.edit-section {
 		border-bottom: 1px solid;
-		padding-bottom: 1em;
+		//padding-bottom: 1em;
+		padding: 1em;
 	}
 
 	.sub-header {
 		color: white;
 		color: $color-tertiary;
 		text-transform: capitalize !important;
-		margin-top: 1em;
+		//margin-top: 1em;
 		//border-bottom: 1px solid $color-tertiary;
 	}
 

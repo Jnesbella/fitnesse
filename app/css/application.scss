@@ -21,8 +21,8 @@
 /* Color Vars */
 
 /* Top-level Imports */
-@import "bootstrap"; /* Twitter Bootstrap's CSS -> SASS */
 @import "vars";
+@import "_utils";
 
 $lightGrey: rgba(0, 0, 0, 0.3);
 $darkGrey: rgba(0, 0, 0, 0.6);
@@ -31,22 +31,17 @@ $blue: rgba(0, 0, 255, 0.1);
 html, body {
   height:100%;
   margin:0;
-} 
+}
 
-body {
+body, * {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
   font-size: 12pt;
   text-transform: lowercase;
 }
 
-.flex-container {
-  display: flex;
-  flex-wrap: nowrap;
-}
-
-body.flex-container {
-  flex-direction: column;
+body {
+  @include flex-container(column)
 }
 
 h1 {
@@ -58,18 +53,25 @@ h1 {
 }
 
 .content {
-  flex: 1;
+  @include flex-container();
+  @include flex-item();
+  //flex: 1;
   height: 100%;
 }
 
+.screen {
+  width: 100%;
+}
+
 .title-bar {
+  @include flex-container();
   text-align: center;
   background-color: $color-primary;
   padding: 1em 0;
   color: $color-secondary;
 
-  .title-bar-item {
-
+  .title-bar-item, .title-bar-header {
+    @include flex-item();
   }
 
   .title-bar-header {
@@ -84,6 +86,7 @@ a {
   cursor: pointer;
   //padding: 0.5em;
   text-decoration: underline;
+  //white-space: nowrap;
 
   &:hover {
     //color: $color-primary;
@@ -95,13 +98,19 @@ button {
   border: none;
   background: transparent;
   cursor: pointer;
-  padding: 0.5em 1em;
-  margin: 0;
   border: 1px solid $color-primary;
   color: black;
   background-color: $color-secondary;
   min-width: 5em;
   text-align: center;
+  min-width: 6em;
+  padding: 0.5em 1em;
+  margin: 0;
+  margin-right: 0.5em;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
 
   &.slay {
     color: red;
@@ -149,26 +158,12 @@ ul {
   padding: 0;
 
   li {
-    padding: 1em 0;
+    padding: 1em;
     border-bottom: 1px solid $color-accent;
   }
 
   li:last-child {
     border: none;
-  }
-}
-
-.faux-table {
-  display: table;
-  width: 100%;
-
-  .faux-row {
-    display: table-row;
-  }
-
-  .faux-cell {
-    display: table-cell;
-    vertical-align: middle;
   }
 }
 

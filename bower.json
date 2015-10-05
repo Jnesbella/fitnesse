@@ -1,28 +1,10 @@
 {
   "name": "Fitnesse",
-  "version": "0.0.1",
-  "authors": [
-    "Jesse Nesbella <jesse.nesbella@gmail.com>"
-  ],
-  "description": "",
-  "license": "",
-  "homepage": "",
-  "private": false,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test"
-  ],
   "dependencies": {
-    "angular": "~1.2.17",
-    "angular-cookies": "~1.2.15",
-    "angular-route": "~1.2.15",
-    "angular-sanitize": "~1.2.17",
-    "angular-touch": "~1.2.17"
-  },
-  "devDependencies": {
-    "angular-mocks": "~1.2.16",
-    "angular-bootstrap": "~0.11.0"
+    "angular": "latest",
+    "angular-cookies": "latest",
+    "angular-route": "latest",
+    "angular-sanitize": "latest",
+    "angular-touch": "latest"
   }
 }

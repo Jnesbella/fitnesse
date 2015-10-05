@@ -6,14 +6,6 @@ app.controller('workoutPlayerController', ['$scope', 'workout', 'exerciseManager
 		exerciseIndex: undefined,
 		isRecording: false,
 		timestamp: Date.now()
-		// session
-	};
-
-	$scope.tabs = ['records', 'exercise'];
-	$scope.data.selectedTab = $scope.tabs[0];
-
-	$scope.selectTab = function (tab) {
-		$scope.data.selectedTab = tab;
 	};
 
 	$scope.getWorkoutName = function () {
@@ -41,7 +33,7 @@ app.controller('workoutPlayerController', ['$scope', 'workout', 'exerciseManager
 
 	var getExercise = function (id) {
 		return exerciseManager.get(id);
-	}
+	};
 
 	// load the next exercise for the workout
 	/*$scope.getNextExerciseName = function () {
@@ -105,6 +97,7 @@ app.controller('workoutPlayerController', ['$scope', 'workout', 'exerciseManager
 		var session = sessionManager.create('session');
 		session.workout = workout.id;
 		$scope.data.session = session;
+		$scope.data.exercises = $scope.getExercises();
 	}
 	init();
 }]);
